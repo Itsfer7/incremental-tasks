@@ -1,11 +1,11 @@
-package main.java.org.ejercicios;
+package main.java.org.ejercicios.IncrementDecrement;
 
-public class IncrementThread implements Runnable {
+public class DecrementThread implements Runnable {
 
     private final Accumulator accumulator;
     private final int waitTime;
 
-    public IncrementThread(Accumulator accumulator, int waitTime) {
+    public DecrementThread(Accumulator accumulator, int waitTime) {
         this.accumulator = accumulator;
         this.waitTime = waitTime;
     }
@@ -13,7 +13,7 @@ public class IncrementThread implements Runnable {
     @Override
     public synchronized void run() {
         while (accumulator.getValue() != 0) {
-            accumulator.increment();
+            accumulator.decrement();
             try {
                 Thread.sleep(waitTime);
             } catch (InterruptedException e) {

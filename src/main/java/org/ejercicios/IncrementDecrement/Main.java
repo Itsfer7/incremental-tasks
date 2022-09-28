@@ -1,4 +1,4 @@
-package main.java.org.ejercicios;
+package main.java.org.ejercicios.IncrementDecrement;
 
 public class Main {
     public static void main(String[] args){
