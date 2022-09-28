@@ -1,4 +1,4 @@
-package main.java.org.example;
+package main.java.org.ejercicios;
 
 public class Accumulator {
 
@@ -8,8 +8,12 @@ public class Accumulator {
         this.value = value;
     }
 
-    public synchronized void increment() {
-        value = value + 1;
+    public void increment() {
+        value++;
+    }
+
+    public void decrement() {
+        value--;
     }
 
     public int getValue() {

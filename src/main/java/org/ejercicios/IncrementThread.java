@@ -1,21 +1,21 @@
-package main.java.org.example;
+package main.java.org.ejercicios;
 
 public class IncrementThread implements Runnable {
 
     private final Accumulator accumulator;
-    private final int times;
+    private final int waitTime;
 
-    public IncrementThread(int times ,Accumulator accumulator) {
-        this.times = times;
+    public IncrementThread(Accumulator accumulator, int waitTime) {
         this.accumulator = accumulator;
+        this.waitTime = waitTime;
     }
 
     @Override
-    public synchronized void run() {
-        for (int i = 0; i < times; i++) {
+    public void run() {
+        while (accumulator.getValue() != 0) {
             accumulator.increment();
             try {
-                Thread.sleep(10);
+                Thread.sleep(waitTime);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
