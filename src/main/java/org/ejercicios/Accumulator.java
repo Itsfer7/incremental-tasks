@@ -8,11 +8,11 @@ public class Accumulator {
         this.value = value;
     }
 
-    public void increment() {
+    public synchronized void increment() {
         value++;
     }
 
-    public void decrement() {
+    public synchronized void decrement() {
         value--;
     }
 

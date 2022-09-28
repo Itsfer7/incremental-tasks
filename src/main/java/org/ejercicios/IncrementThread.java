@@ -11,7 +11,7 @@ public class IncrementThread implements Runnable {
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         while (accumulator.getValue() != 0) {
             accumulator.increment();
             try {
