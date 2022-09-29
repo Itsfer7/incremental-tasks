@@ -5,20 +5,22 @@ import java.util.concurrent.Semaphore;
 public class PongThread implements Runnable {
 
     private final int times;
-    private final Semaphore semaphore;
+    private final Semaphore pongSemaphore;
+    private final Semaphore pingSemaphore;
 
-    public PongThread(int times, Semaphore semaphore) {
+    public PongThread(int times, Semaphore pongSemaphore, Semaphore pingSemaphore) {
         this.times = times;
-        this.semaphore = semaphore;
+        this.pongSemaphore = pongSemaphore;
+        this.pingSemaphore = pingSemaphore;
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
         for (int i = 0; i < times; i++) {
             try {
-                semaphore.acquire(1);
-                System.out.println("Pong");
-                semaphore.release(1);
+                pongSemaphore.acquire(1);
+                System.out.println("PONGPONGPONG");
+                pingSemaphore.release(1);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
