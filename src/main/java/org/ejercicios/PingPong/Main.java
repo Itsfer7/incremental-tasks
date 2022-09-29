@@ -11,37 +11,10 @@ public class Main {
 
         int times = 10;
 
-        Thread pingPongThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    for (int i = 0; i < times; i++) {
-                        semaphore.acquire(1);
-                        System.out.println("Ping");
-                    }
-                    semaphore.release(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        Thread pingThread = new Thread(new PingThread(times, semaphore));
+        Thread pongThread = new Thread(new PongThread(times, semaphore));
 
-        Thread pongThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    semaphore.acquire(1);
-                    for (int i = 0; i < times; i++) {
-                        System.out.println("Pong");
-                    }
-                    semaphore.release(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        //pingThread.start();
+        pingThread.start();
         pongThread.start();
         semaphore.release();
     }
